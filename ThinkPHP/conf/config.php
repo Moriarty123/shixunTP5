@@ -41,9 +41,30 @@ return [
     'controller_suffix'      => false,
 
 
+    //模板替换
     'view_replace_str'  =>  [
-    '__PUBLIC__'        =>'/public/',
-    '__ROOT__'          => '/',
-    '__CSS__'           =>  '../static/css'
-    ]
+        '__PUBLIC__'        =>'/public/',
+        '__ROOT__'          => '/',
+        '__CSS__'           =>  '../static/css'
+    ],
+
+
+    //验证码设置
+    'captcha'=>[
+        //字体大小
+        'fontSize'      =>  20,
+        //验证码长度(位数)
+        'length'        =>  4,
+        //使用曲线
+        'useCurve'      =>  false,
+        //使用杂点
+        'useNoise'      =>  false,
+        //使用背景图片
+        'useImgBg'      =>  false,
+        //使用中文验证码
+        //'useZh'=>true,
+    ],
+
+
+
 ];

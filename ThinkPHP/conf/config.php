@@ -38,5 +38,12 @@ return [
     // 应用类库后缀
     'class_suffix'           => false,
     // 控制器类后缀
-    'controller_suffix'      => false
+    'controller_suffix'      => false,
+
+
+    'view_replace_str'  =>  [
+    '__PUBLIC__'        =>'/public/',
+    '__ROOT__'          => '/',
+    '__CSS__'           =>  '../static/css'
+    ]
 ];

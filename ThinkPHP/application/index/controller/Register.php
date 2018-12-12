@@ -18,19 +18,30 @@ class Register extends Controller
 		$captcha = input('captcha', '','htmlspecialchars');
 		$pwd = input('pwd', '','htmlspecialchars');
 		$repwd = input('repwd', '','htmlspecialchars');
+		$tellcode = input('tellcode', '','htmlspecialchars');
+
+		$code = session('tellcode');
+
+		//短信验证码
+		if ($tellcode != $code) {
+			$this->error('短信验证码错误！');
+		}
 
 		//定义验证器规则
 		$rule = [
-			'phone|手机号'	=>	'require|length:11',
-			'captcha|验证码'=>	'require|captcha',
-			'pwd|密码'		=>	'require|min:6',
-			'repwd'			=>	'require|min:6|confirm:pwd'
+			'phone|手机号'			=>	'require|length:11|unique:user',
+			// 'tellcode|短信验证码'	=>	'require',
+			'captcha|验证码'		=>	'require|captcha',
+			'pwd|密码'				=>	'require|min:6',
+			'repwd'					=>	'require|min:6|confirm:pwd'
 		];
 
 		//定义验证器报错信息
 		$msg = [
 			'phone.require'		=>	'手机号不能为空！',
 			'phone.length'		=>	'手机号必须为11位',
+			'phone.unique'		=>	'手机号已被注册',
+			// 'tellcode.require'	=>	'短信验证码不能为空'
 			'captcha.require'	=>	'验证码不能为空！',
 			'captcha.captcha'	=>	'验证码错误！',
 			'pwd.require'		=>	'密码不能为空！',
@@ -58,11 +69,15 @@ class Register extends Controller
 		if ($res != true) {
 			$this->error($validate->getError());
 		}
-		
+
 		$data = [
 			'phone' => 	$phone,
 			'pwd'	=>	md5($pwd)
 		];
+
+
+
+
 		//存入数据库
 		$ret = db('user')->insert($data);
 
@@ -70,10 +85,45 @@ class Register extends Controller
 			$this->error('注册失败！');
 		}
 		else {
-			$this->success('注册成功！');
+			session('user_id', $phone);
+			$this->success('注册成功！','index/index/index');
 		}
 
 	}
+
+	public function sendSms() {
+		//获取手机号
+		$tell   = input('post.tell','','strip_tags');        
+		//创蓝        
+
+		//发送数据到短信接口
+		$api = "http://sms.quweiziyuan.cn/sms.php";        
+		$random = mt_rand(100000, 999999);        
+		$data = array(
+            'key' => 'wein07699',
+            'tell' => "{$tell}",
+            'code' => "{$random}"
+        );
+		// echo json_encode($data);
+		
+		// $ret = post($api, $data);        
+		// echo json_encode($ret);        
+		
+		//保存短信验证码到session, 以便验证短信
+		session('tellcode', $random);        
+
+		//返回执行结果
+		$result = [            
+			'status' => true,            
+			'msg' => 'ok',            
+			'code' => $random        
+		];
+
+		echo json_encode($result);
+
+
+	}
+
 
 	public function verity ($data) {
 		if ($data['phone'] == '') {

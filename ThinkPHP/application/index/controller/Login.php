@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Db;
 use think\Controller;
+use think\Validate;
 
 class Login extends Controller
 {
@@ -32,11 +33,47 @@ class Login extends Controller
     			'pwd.min'		=>	'密码最少为6位'
     		];
 
-    		
+    		//要验证的数据
+    		$check = [
+    			'phone'	=>	$phone,
+    			'pwd'	=>	$pwd
+    		];
 
+            //创建验证器
+            $validate = new Validate($rule, $msg);
 
+            //返回验证结果
+            $res = $validate->check($check);
+            
+            //输出错误信息
+            if ($res != true) {
+                $this->error($validate->getError());
+            }
 
+            $pwd = md5($pwd);
+            //查找用户
+    		$res = db('user')	->where("phone = '{$phone}' and pwd = '{$pwd}'")
+    							->find();
+
+            if($res == NULL) {
+                $this->error('帐号或密码错误！');
+            }
+
+            //登录成功
+            session('user_id', $phone);
+
+            $this->success('登录成功！','index/index/index');
+
+    		// dump($res);
     	}
+    }
+
+    //退出登录
+    public function logout() 
+    {
+        session('user_id', NULL);
+
+        $this->success('退出成功', 'index/index/index');
     }
     
 }

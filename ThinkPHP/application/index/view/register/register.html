@@ -19,7 +19,7 @@
 			<div class="top">注册OPPO帐号</div>
 			<div class="loginArea">
 				<form action="{:Url('index/register/insert')}" method="post">
-					<p><input type="text" name="" placeholder="请输入手机号码"></p>
+					<p><input type="text" name="phone" placeholder="请输入手机号码"></p>
 					<p>
 						<input type="text" name="" placeholder="短信验证码" class="code">
 						<button>
@@ -28,11 +28,11 @@
 					<p>
 						<input type="text" name="captcha" placeholder="图片验证码" class="code" style="float: left; margin-bottom: 20px;">
 						<div>
-							<img src="{:captcha_src()}" alt="captcha" style="width: 120px;float: left; margin-bottom: 20px;" onclick="this.src='{:captcha_src()}'" />
+							<img src="{:captcha_src()}" alt="captcha" style="width: 120px;float: left; margin-bottom: 20px;" onclick="src='{:captcha_src()}'" />
 						</div>
 					</p>
-					<p><input type="password" name="psd" placeholder="密码"></p>
-					<p><input type="password" name="repsd" placeholder="确认密码"></p>
+					<p><input type="password" name="pwd" placeholder="密码"></p>
+					<p><input type="password" name="repwd" placeholder="确认密码"></p>
 					<input type="submit" name="" value="立即注册">
 				</form>
 			</div>

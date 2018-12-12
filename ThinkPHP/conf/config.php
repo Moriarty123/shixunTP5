@@ -45,7 +45,8 @@ return [
     'view_replace_str'  =>  [
         '__PUBLIC__'        =>'/public/',
         '__ROOT__'          => '/',
-        '__CSS__'           =>  '../static/css'
+        '__CSS__'           =>  '/static/css',
+        '__IMG__'           =>  '/static/images'
     ],
 
 

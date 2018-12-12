@@ -11,6 +11,9 @@ class Index extends Controller
         return $this->fetch();
     }
 
-
+    public function login()
+    {
+    	return $this->fetch('login');
+    }
     
 }

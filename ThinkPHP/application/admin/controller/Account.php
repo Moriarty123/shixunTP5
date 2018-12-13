@@ -4,7 +4,9 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Validate;
 
-class Account extends Controller
+use app\admin\controller\Common;
+
+class Account extends Common
 {
     public function index()
     {
@@ -246,7 +248,7 @@ class Account extends Controller
 	    
 
 	    
-
+		// dump($data);
 	    //存入admin表
 	    $ret = db('admin')	->where("id={$id}")
 	    					->update($data);
@@ -255,7 +257,7 @@ class Account extends Controller
 			$this->error('更新帐号失败！');
 		}
 		else {
-			session('user_id', $userName);
+			session('admin_id', $userName);
 			$this->success('更新帐号成功！','admin/account/alist');
 		}
     }

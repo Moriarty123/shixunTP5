@@ -45,18 +45,19 @@ class Account extends Controller
 	    //定义验证规则
 	    $rule = [
 	    	'userName'			=>	'require',
-	    	'email|邮箱'		=>	'email|unqiue:admin',
-	    	'telephone|手机号'	=>	'length:11|unqiue:admin',
+	    	'email|邮箱'		=>	'email|unique:admin',
+	    	'telephone|手机号'	=>	'length:11|unique:admin',
 	    	'pwd|密码'			=>	'require|min:6',
 			'repwd|确认密码'	=>	'require|min:6|confirm:pwd'
 	    ];
 
 	    //定义报错信息
 	    $msg = [
-	    	'userName.require'	=>	'用户名不能为空',
+	    	'userName.require'	=>	'用户名不能为空！',
 	    	'email.email'		=>	'邮箱格式不正确',
-	    	
+	    	'email.unique'		=>	'该邮箱已被注册',
 	    	'telephone.length'	=>	'手机号必须为11位',
+	    	'telephone.unique'	=>	'该手机号已被注册',
 	    	'pwd.require'		=>	'密码不能为空！',
 			'pwd.min'			=>	'密码最少为6位',
 			'repwd.require'		=>	'请确认密码',

@@ -6,16 +6,14 @@ use think\Validate;
 
 class Common extends Controller
 {
-    public function index()
+
+    public function _initialize()
     {
-        
-    	$id = session('admin_id');
-    	dump($id);
-    	dump("sdsad");
+        $id = session('admin_id');
+
     	if($id == NULL) {
     		$this->error('请登录！', '/admin/login/index');
     	}
-
     }
 
 }

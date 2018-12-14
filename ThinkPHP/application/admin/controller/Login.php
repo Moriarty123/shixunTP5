@@ -5,7 +5,7 @@ use think\Controller;
 
 use app\admin\controller\Common;
 
-class login extends Common
+class login extends Controller
 {
     public function index()
     {
@@ -50,11 +50,22 @@ class login extends Common
             session('admin_id', $account['id']);
             session('admin_name', $account['userName']);
             session('admin_head_img', $account['headImg']);
-
+            session('loginTime', time());
+            
             $this->success('登录成功！', '/admin/index/index');
 
         }
-
-
     }
+
+    //退出登录
+    public function logout() 
+    {
+        session('admin_id', NULL);
+        session('admin_name', NULL);
+        session('admin_head_img', NULL);
+
+        $this->success('退出成功', 'admin/index/index');
+    }
+
+    
 }

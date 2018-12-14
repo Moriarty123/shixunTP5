@@ -89,7 +89,7 @@ class Account extends Common
 		}
 	    
 
-	    //存入数据库
+	    //3.存入数据库
 	    $data = [
 	    	'userName'	=>	$userName,
 	    	'email'		=>	$email,
@@ -126,7 +126,7 @@ class Account extends Common
     	$id = input('get.id');
 
     	$account = db('admin')	->where("id={$id}")
-    						->find();
+    							->find();
 
     	$this->assign('account', $account);
 

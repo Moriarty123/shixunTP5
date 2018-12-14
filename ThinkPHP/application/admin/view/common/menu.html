@@ -1,32 +1,67 @@
-  <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
-    <div class="am-offcanvas-bar admin-offcanvas-bar">
-      <ul class="am-list admin-sidebar-list">
-        <li><a href="/admin/index/index"><span class="am-icon-home"></span> 首页</a></li>
-        <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> 管理员模块 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
-            <li><a href="/admin/index/user" class="am-cf"><span class="am-icon-check"></span>添加管理员<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
-            <li><a href="/admin/account/alist"><span class="am-icon-puzzle-piece"></span> 管理员列表</a></li>
-            
-          </ul>
-        </li>
-        <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
-        <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
-        <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
-      </ul>
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+  <div class="am-offcanvas-bar admin-offcanvas-bar">
+    <ul class="am-list admin-sidebar-list">
+      <li>
+        <a href="/admin/index/index">
+          <span class="am-icon-home"></span> 首页
+        </a>
+      </li>
+      <li class="admin-parent">
+        <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
+          <span class="am-icon-file"></span> 管理员模块 
+          <span class="am-icon-angle-right am-fr am-margin-right"></span>
+        </a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+          <li>
+            <a href="/admin/index/user" class="am-cf">
+              <span class="am-icon-check"></span>添加管理员
+              <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/account/alist">
+              <span class="am-icon-puzzle-piece"></span> 管理员列表
+            </a>
+          </li>
+        </ul>
+      </li>
 
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-bookmark"></span> 公告</p>
-          <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
-        </div>
+      <li class="admin-parent">
+        <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">
+          <span class="am-icon-file"></span> banner模块 
+          <span class="am-icon-angle-right am-fr am-margin-right"></span>
+        </a>
+        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+          <li>
+            <a href="/admin/carousel/index" class="am-cf">
+              <span class="am-icon-check"></span>添加轮播图片
+              <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/carousel/alist">
+              <span class="am-icon-puzzle-piece"></span> 轮播图片列表
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="admin-table.html"><span class="am-icon-table"></span> 表格</a></li>
+      <li><a href="admin-form.html"><span class="am-icon-pencil-square-o"></span> 表单</a></li>
+      <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+    </ul>
+
+    <div class="am-panel am-panel-default admin-sidebar-panel">
+      <div class="am-panel-bd">
+        <p><span class="am-icon-bookmark"></span> 公告</p>
+        <p>时光静好，与君语；细水流年，与君同。—— Amaze UI</p>
       </div>
+    </div>
 
-      <div class="am-panel am-panel-default admin-sidebar-panel">
-        <div class="am-panel-bd">
-          <p><span class="am-icon-tag"></span> wiki</p>
-          <p>Welcome to the Amaze UI wiki!</p>
-        </div>
+    <div class="am-panel am-panel-default admin-sidebar-panel">
+      <div class="am-panel-bd">
+        <p><span class="am-icon-tag"></span> wiki</p>
+        <p>Welcome to the Amaze UI wiki!</p>
       </div>
     </div>
   </div>
+</div>

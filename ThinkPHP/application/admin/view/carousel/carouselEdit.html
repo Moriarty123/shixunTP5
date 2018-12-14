@@ -115,12 +115,23 @@
 <script type="text/javascript">
 
 function uploadsimage(obj) {
+
+    ////////////////////////
+    // var file = document.getElementById('image')[0];
+
+    // console.log(file);
+    // console.log($(obj)[0]);
+    ////////////////////////
+
     if ( obj.value == "" ) return;
     // alert(obj.value);
     var formdata = new FormData();
     //<input type="file" name="img" value="" />
-    formdata.append("image" , $(obj)[0].files[0]);//获取文件法二
-
+    // alert($(obj)[0].files[0]);
+    // console.log($(obj)[0].files[0]);
+    formdata.append("image" , $(obj)[0].files[0]);//$(obj)[0].files[0]为文件对象
+    // alert(formdata);
+    // console.log(formdata);
     //ajax方法实现异步上传图片
     //type:提交方式
     //url:处理数据接口

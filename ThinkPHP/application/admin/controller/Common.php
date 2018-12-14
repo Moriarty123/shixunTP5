@@ -18,7 +18,7 @@ class Common extends Controller
     	
 
     	$loginTime = session('loginTime');
-    	if(time() - $loginTime > 300) {
+    	if(time() - $loginTime > 3000) {
     		$this->error('登录超时，请重新登录！', 'admin/login/index');
     	}
     }

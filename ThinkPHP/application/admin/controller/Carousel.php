@@ -44,6 +44,7 @@ class Carousel extends Common
 		$number = input('post.pictureNumber');
 		$url = $img_path;
 		$addTime = time();
+		$status = 1;
 		//2.2验证数据
 		//TO DO
 
@@ -55,7 +56,8 @@ class Carousel extends Common
 			'link'		=>	$link,
 			'number'	=>	$number,
 			'url'		=>	$url,
-			'addTime' 	=>	$addTime
+			'addTime' 	=>	$addTime,
+			'status'	=>	$status
 		];
 
 		//3.2存入carousel表

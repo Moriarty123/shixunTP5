@@ -55,6 +55,45 @@ class Post extends Controller
     	}
 
     	$this->success('发布帖子成功！');
+    }
+
+    public function hotPostList()
+    {
+        $where = "is_index = 1";
+
+        $hotPostList = db('post')->where($where)->select();
+
+        $temp = [];
+        foreach ($hotPostList as $key => $value) {
+            $temp = json_decode($value['images']);
+            // dump($temp);
+            $value['images'] = $temp;
+            // dump($value);
+            $hotPostList[$key] = $value;
+        }
+
+        return $hotPostList;
+
+        // dump($hotPostList);
+
+        // $this->assign('hotPostList', $hotPostList);
+
+
+        // return $this->fetch('index/index');
+    } 
+
+    public function getOneHotPost($page) {
+        
+        $where = "id = {$page}";
+
+        $ret = db('post')->where($where)->find();
+
+        if ($ret == false) {
+            $this->error('查找失败！');
+        }
+        // echo $ret;
+        // $this->success('查找成功！');
+        return $ret;
 
     }
 }

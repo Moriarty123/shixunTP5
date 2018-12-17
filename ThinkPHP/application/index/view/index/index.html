@@ -12,8 +12,8 @@
 
 	<section class="main">
 		<!-- 轮播开始 -->
-		<div class="roll">
-			<p class="img">
+		<div class="roll" >
+			<p class="img" >
 				<a href=""><img src="/static/images/15107093797817.jpg_w1080.jpg" alt=""></a>
 				<a href=""><img src="/static/images/15111437203091.jpg_w1080.jpg" alt=""></a>
 				<a href=""><img src="/static/images/15111435742922.jpg_w1080.jpg" alt=""></a>
@@ -68,23 +68,23 @@
 		<!-- 首页列表开始 -->
 		<aside class="lSide ">
 			<h1 class="boxTitle"> 热帖推荐 </h1>
+			{volist name="hotPostList" id="post"}
 			<div class="blog box">
 				<a href="" class="headPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
 				<div class="blogcont">
 					<h1 class="blogTit">
-						<a href="">穿白色毛衣吃火锅，你懂的</a>
-						<span>tang0pan</span>
+						<a href="">{$post.title}</a>
+						<span>{$post.user_id}</span>
 					</h1>
 					<section class="blogPic">
+						{foreach $post.images as $image}
 						<a href="">
-							<span><img src="/static/images/5a17e7efce883.jpg"></span>
+							<span id="images"><img src="" datasrc="{$image}"></span>
 						</a>
-						<a href="">
-							<span><img src="/static/images/5a17e7efcfc5e.jpg"></span>
-						</a>
+						{/foreach}
 					</section>
 					<div class="blogBot">
-						<p class="date">2017/11/24 下午5:36:00</p>
+						<p class="date">{$post.addTime|date="Y-m-d h:i",###}</p>
 						<div class="opr">
 							<span class="view"><i></i>776</span>
 							<a href="" class="forward"><i></i>1</a>
@@ -94,108 +94,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="blog box">
-				<a href="" class="headPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
-				<div class="blogcont">
-					<h1 class="blogTit">
-						<a href="">美女如云</a>
-						<span>tang0pan</span>
-					</h1>
-					<section class="blogPic">
-						<a href="">
-							<span><img src="/static/images/5a17d52c44fcb.jpg"></span>
-						</a>
-						<a href="">
-							<span><img src="/static/images/5a17e7efce883.jpg"></span>
-						</a>
-						<a href="">
-							<span><img src="/static/images/5a17d52c47d02.jpg"></span>
-						</a>
-					</section>
-					<div class="blogBot">
-						<p class="date">2017/11/24 下午4:15:43</p>
-						<div class="opr">
-							<span class="view"><i></i>776</span>
-							<a href="" class="forward"><i></i>1</a>
-							<a href="" class="reply"><i></i>30</a>
-							<a href="" class="praise"><i></i>483</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog box">
-				<a href="" class="headPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
-				<div class="blogcont">
-					<h1 class="blogTit">
-						<a href="">回忆过去。#反正都有趣# </a>
-						<span>tang0pan</span>
-					</h1>
-					<section class="blogPic">
-						<a href="">
-							<span><img src="/static/images/5a17e82a976ae.jpg"></span>
-						</a>
-					</section>
-					<div class="blogBot">
-						<p class="date">2017/11/24 下午5:36:00</p>
-						<div class="opr">
-							<span class="view"><i></i>776</span>
-							<a href="" class="forward"><i></i>1</a>
-							<a href="" class="reply"><i></i>30</a>
-							<a href="" class="praise"><i></i>483</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="blog box">
-				<a href="" class="headPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
-				<div class="blogcont">
-					<h1 class="blogTit">
-						<a href="">#反正都有趣##感恩默契大考验##冬天快乐#感谢遇见你 </a>
-						<span>tang0pan</span>
-					</h1>
-					<section class="blogPic">
-						<a href="">
-							<span><img src="/static/images/5a17e859eed87.jpg"></span>
-						</a>
-					</section>
-					<div class="blogBot">
-						<p class="date">2017/11/24 下午5:36:00</p>
-						<div class="opr">
-							<span class="view"><i></i>776</span>
-							<a href="" class="forward"><i></i>1</a>
-							<a href="" class="reply"><i></i>30</a>
-							<a href="" class="praise"><i></i>483</a>
-						</div>
-					</div>
-				</div>
-			</div>	
-			<div class="blog box">
-				<a href="" class="headPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
-				<div class="blogcont">
-					<h1 class="blogTit">
-						<a href="">飞洒地方撒旦法撒旦法 </a>
-						<span>tang0pan</span>
-					</h1>
-					<section class="blogPic">
-						<a href="">
-							<span><img src="/static/images/5a1e0cfc95532.jpg"></span>
-						</a>
-						<a href="">
-							<span><img src="/static/images/5a1e0cfc96c34.jpg"></span>
-						</a>
-					</section>
-					<div class="blogBot">
-						<p class="date">2017/11/24 下午5:36:00</p>
-						<div class="opr">
-							<span class="view"><i></i>776</span>
-							<a href="" class="forward"><i></i>1</a>
-							<a href="" class="reply"><i></i>30</a>
-							<a href="" class="praise"><i></i>483</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<ul class="loadMore">没有数据</ul>
+			
+			{/volist}
+			<ul class="loadMore" id="noData">没有数据</ul>
 		</aside>
 		<!-- 首页列表结束 -->
 
@@ -207,6 +108,73 @@
 	</div>
 	
 	{include file="../application/index/view/index/common/footer.html" /}
+
+
+	<script type="text/javascript" src="/static/js/jquery.min.js"></script>>
+	<script type="text/javascript">
+
+	// 绑定滚动事件
+
+	$(document).bind('scroll', function() {
+		// console.log('sdasd');
+		slowLoad();
+	});
+	
+
+	function slowLoad() {
+		var windowHeight = $(window).height();
+		var scrollHeight = $(window).scrollTop();
+		var noDataTop = $('#noData').offset().top;
+
+		// console.log(windowHeight + " " + scrollHeight + " " + noDataTop);
+
+		if (windowHeight + scrollHeight >= noDataTop) {
+			var images = document.getElementById('images');
+			// console.log(images);
+			$('.blog').find('img').each(function() {
+				// console.log($(this));
+				var imgsrc = $(this).attr('datasrc');
+
+				var that = $(this);
+
+				setTimeout(function() {
+					that.attr('src', imgsrc);
+				},100)
+
+				// $(this).attr('src', imgsrc);
+			});
+		}
+	}
+
+	slowLoad();
+
+	$(document).bind('scroll', function() {
+		// console.log('sdasd');
+		loadList();
+	});
+
+
+	var page = 0;
+
+
+
+	function loadList() {
+		page++;
+
+		$.get('/index/post/getOneHotPost', {'page':page}, function(ret) {
+			// console.log(ret);
+			if( ret.code == 0) {
+				
+			}
+			else {
+				console.log(ret);
+			}
+
+		},'json');
+	}
+	loadList();
+
+</script>
 
 </body>
 </html>

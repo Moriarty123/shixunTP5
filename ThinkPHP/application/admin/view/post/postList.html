@@ -102,15 +102,20 @@
                 <td>{$vo.user_id}</td>
                 <td>
                 {eq name="$vo.is_index" value="0"}
-                <button value="推荐">推荐</button>
+                <!-- <button value="推荐" onclick="/admin/post/inIndex?id={$vo.id}">推荐</button> -->
+                <div class="am-btn-group am-btn-group-xs">
+                      <a href="/admin/post/inIndex?id={$vo.id}"class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 推荐</a>
+                    </div>
                 {else}
-                <button value="取消推荐">取消推荐</button>
+                <div class="am-btn-group am-btn-group-xs">
+                      <a href="/admin/post/inIndex?id={$vo.id}"class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 取消推荐</a>
+                    </div>
                 {/eq}
                 </td>
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <a href="/admin/post/delete?id={$vo.id}"class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+                      <a href="/admin/post/deletePost?id={$vo.id}"class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
                     </div>
                   </div>
                 </td>

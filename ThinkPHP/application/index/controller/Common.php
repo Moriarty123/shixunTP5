@@ -7,7 +7,8 @@ use think\Controller;
 class Common extends Controller
 {
     //上传图片
-	public function uploadsimage() {
+	public function uploadsimage() 
+	{
 		// dump($_POST);
 		// dump($_FILES);
 		$file = request()->file('image');
@@ -29,6 +30,10 @@ class Common extends Controller
 				$this->error($file->getError());
 			}
 		}
+	}
+
+	public function common(){
+   		return $this->fetch('common');
 	}
 
     

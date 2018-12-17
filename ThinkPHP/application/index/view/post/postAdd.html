@@ -60,22 +60,24 @@
 			<div id="content-container" style="margin:15px;">
 				<div style="margin:10px;">
 					<div style="clear: both;">
-						<form>
+						<form action="/index/post/add" method="post">
 							<div style="margin-bottom: 20px;">
 								<input type="text" name="title" style="width: 700px;height: 30px; line-height: 30px; padding-left: 20px; " placeholder="请输入标题">
 							</div>
 							<div style="margin-bottom: 20px;">
 								<button style="width: 200px;height: 30px;line-height: 30px; background: #F60; text-align: center;">选择上传图片</button><br />
 								<input type="file" name="img" style="width:200px; height:30px; margin-top: -30px; opacity: 0; float: left;" onchange="uploadsimage(this);" id="image" multiple>
-								<input type="hidden" name="pictureUploads" value="" id="pictureUploads">
+								<input type="hidden" name="pictureUploads" value="123" id="pictureUploads">
 								<!-- <img src="" style="width: 200px; margin-top: 2px;" id="uploadsimg"> -->
 							</div>
 							<div id="img-list-box">
 							</div>
-							<div style="clear: both;">
-							<div style="margin-bottom: 20px; height: 400px;" id="content-box">
+							<div style="clear: both;"></div>
+							<textarea style="margin-bottom: 20px; height: 400px; " id="content-box">
 								
-							</div>
+							</textarea>
+
+							<input type="submit" value="提交">
 						</form>
 					</div>
 				</div>
@@ -89,6 +91,9 @@
 
 
 <script type="text/javascript">
+
+//图片
+var img_src = new Array();
 
 //上传图片
 function uploadsimage(obj) {
@@ -109,9 +114,12 @@ function uploadsimage(obj) {
          	var html = '<div style="float:left"><img src="'+ret+'" style="width:120px">';
          	html += '<button onclick="delImg(this);">删除</button>';
          	html += '</div>';
-         	console.log(html);
+         	// console.log(html);
         	$('#img-list-box').append(html);
-
+        	
+        	img_src.push(ret);
+        	// console.log(img_src);
+        	$('#pictureUploads').val(img_src);
         },
         error : function(){ 
           alert('图片上传失败');

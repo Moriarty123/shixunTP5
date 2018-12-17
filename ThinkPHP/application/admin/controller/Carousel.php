@@ -78,7 +78,7 @@ class Carousel extends Common
 		$pictureList = db('carousel')->paginate(3);
 
 		$this->assign('pictureList', $pictureList);
-
+		// dump($pictureList);
 		return view('carouselList');
 	}
 

@@ -16,4 +16,11 @@ class Topic extends Controller
     	return $this->fetch('topic');
     }
     
+
+    public function getTopicName()
+    {
+    	$ret = db('topic')->field('name')->select();
+
+    	return $ret;
+    }
 }

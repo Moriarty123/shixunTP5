@@ -9,8 +9,10 @@ class Index extends Controller
 {
     public function index()
     {
+        //推荐热帖
     	$post = new Post();
     	$hotPostList = $post->hotPostList();
+
 
     	$this->assign('hotPostList', $hotPostList);
     	

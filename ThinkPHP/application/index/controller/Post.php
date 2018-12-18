@@ -4,6 +4,8 @@ namespace app\index\controller;
 use think\Db;
 use think\Controller;
 
+use app\index\controller\Topic;
+
 class Post extends Controller
 {
 	public function _initialize() 
@@ -15,6 +17,11 @@ class Post extends Controller
 
     public function index()
     {
+        $topic = new Topic();
+        $topicNames = $topic->getTopicName();
+
+        $this->assign('topicNames', $topicNames);
+
         return $this->fetch('postAdd');
     }
 
@@ -24,12 +31,11 @@ class Post extends Controller
     	// dump($_FILES);
     	//1.获取表单数据
     	$title = input('post.title');
+        $topic = input('post.topic');
+        // dump($topic);
     	$images = input('post.pictureUploads');
     	$content = input('post.editorValue');
 
-    	// dump($title);
-    	// dump($pictures);
-    	// dump($editorValue);
 
         $images = explode(',', $images);
     	// $srcs =	explode(',', $pictures);
@@ -42,6 +48,7 @@ class Post extends Controller
     	$data = [
     		'user_id'	=>	session('user_id'),
     		'title'		=>	$title,
+            'topic_name'=>  $topic,
     		'images'	=>	json_encode($images),
     		'content'	=>	$content,
     		'addTime'	=>	time(),

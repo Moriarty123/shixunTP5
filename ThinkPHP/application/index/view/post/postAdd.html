@@ -64,6 +64,16 @@
 							<div style="margin-bottom: 20px;">
 								<input type="text" name="title" style="width: 700px;height: 30px; line-height: 30px; padding-left: 20px; " placeholder="请输入标题">
 							</div>
+
+							<div style="margin-bottom: 20px;">
+								<select style="width:100px;height: 30px; font:16px;" name="topic">
+									<option>请选择话题</option>
+									{volist name="topicNames" id="vo"}
+									<option value="{$vo.name}">{$vo.name}</option>
+									{/volist}
+								</select>
+							</div>
+
 							<div style="margin-bottom: 20px;">
 								<button style="width: 200px;height: 30px;line-height: 30px; background: #F60; text-align: center;">选择上传图片</button><br />
 								<input type="file" name="img" style="width:200px; height:30px; margin-top: -30px; opacity: 0; float: left;" onchange="uploadsimage(this);" id="image" multiple>
@@ -90,39 +100,39 @@
 		{include file="../application/index/view/common/footer.html" /}
 
 
-<script type="text/javascript">
+		<script type="text/javascript">
 
 //图片
 var img_src = new Array();
 
 //上传图片
 function uploadsimage(obj) {
-    if ( obj.value == "" ) return;
+	if ( obj.value == "" ) return;
 
-    var formdata = new FormData();
+	var formdata = new FormData();
 
     formdata.append("image" , $(obj)[0].files[0]);//$(obj)[0].files[0]为文件对象
 
     $.ajax({
-        type : 'post',
-        url : '/index/common/uploadsimage',
-        data : formdata,
-        cache : false,
+    	type : 'post',
+    	url : '/index/common/uploadsimage',
+    	data : formdata,
+    	cache : false,
         processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
         contentType : false, // 不设置Content-type请求头
         success : function(ret){
-         	var html = '<div style="float:left"><img src="'+ret+'" style="width:120px">';
-         	html += '<button onclick="delImg(this);">删除</button>';
-         	html += '</div>';
+        	var html = '<div style="float:left"><img src="'+ret+'" style="width:120px">';
+        	html += '<button onclick="delImg(this);">删除</button>';
+        	html += '</div>';
          	// console.log(html);
-        	$('#img-list-box').append(html);
-        	
-        	img_src.push(ret);
+         	$('#img-list-box').append(html);
+         	
+         	img_src.push(ret);
         	// console.log(img_src);
         	$('#pictureUploads').val(img_src);
         },
         error : function(){ 
-          alert('图片上传失败');
+        	alert('图片上传失败');
         }
     });
 }

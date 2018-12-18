@@ -9,19 +9,22 @@
 
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
       <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li>
-      <li class="am-dropdown" data-am-dropdown>
-        
-          
-          {eq name="Think.session.admin_id" value=""}
-            <a target="_self" href="{:Url('admin/login/index')}">登录</a>
-          {else/}
-          <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-            <img src="{$Think.session.admin_head_img}" width="30px;" style="float: left;">
-            <a target="_self" href="{:Url('admin/login/logout')}" style="float: left;">退出登录</a>
-            {$Think.session.admin_name}
+      <li class="am-dropdown" data-am-dropdown style="width: 200px; height: 30px; line-height: 30px;">
+
+
+        {eq name="Think.session.admin_id" value=""}
+        <a target="_self" href="{:Url('admin/login/index')}">登录</a>
+        {else/}
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <a target="_self" href="" style="float: left;">
+            <img src="{$Think.session.admin_head_img}" width="30px;" style="float: left; line-height: 30px;margin-top: 10px;">
           </a>
+          <a target="_self" href="{:Url('admin/login/logout')}" style="float: left;">退出登录</a>
+          <a target="_self" href="" style="float: left;">{$Think.session.admin_name}</a>
+
+        </a>
         {/eq}
-                <ul class="am-dropdown-content">
+        <ul class="am-dropdown-content">
           <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
           <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
           <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>

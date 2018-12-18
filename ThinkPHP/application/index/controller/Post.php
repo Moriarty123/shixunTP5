@@ -18,9 +18,9 @@ class Post extends Controller
     public function index()
     {
         $topic = new Topic();
-        $topicNames = $topic->getTopicName();
+        $topicList = $topic->getAllTopic();
 
-        $this->assign('topicNames', $topicNames);
+        $this->assign('topicList', $topicList);
 
         return $this->fetch('postAdd');
     }
@@ -48,7 +48,7 @@ class Post extends Controller
     	$data = [
     		'user_id'	=>	session('user_id'),
     		'title'		=>	$title,
-            'topic_name'=>  $topic,
+            'topic_id'=>  $topic,
     		'images'	=>	json_encode($images),
     		'content'	=>	$content,
     		'addTime'	=>	time(),
@@ -81,15 +81,11 @@ class Post extends Controller
 
         return $hotPostList;
 
-        // dump($hotPostList);
 
-        // $this->assign('hotPostList', $hotPostList);
-
-
-        // return $this->fetch('index/index');
     } 
 
-    public function getOneHotPost($page) {
+    public function getOneHotPost($page) 
+    {
         
         $where = "id = {$page}";
 
@@ -102,5 +98,38 @@ class Post extends Controller
         // $this->success('查找成功！');
         return $ret;
 
+    }
+
+    public function getTopicPost($topic)
+    {
+        $where = "topic_id = {$topic}";
+        // dump($where);
+        $ret = db('post')->where($where)->select();
+        // dump($ret);
+        //只获取第一张图片
+        $temp = [];
+        $postList = [];
+        foreach ($ret as $key => $post) {
+            $temp = $post;
+            $images = json_decode($post['images']);
+            $image = $images[0];
+
+            $temp['image'] = $image;
+            $postList[] = $temp;
+        }
+
+        // dump($temp);
+
+        return $postList;
+    }
+
+    //查找一个帖子
+    public function getOnePost($id)
+    {
+        $where = "id = {$id}";
+
+        $post = db('post')->where($where)->find();
+
+        return $post;
     }
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拍客</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/css.css">
+</head>
+<body class="topic activity">
+	
+	{include file="../application/index/view/common/header.html" /}
+
+	<section class="main">
+		<div class="topicTop">
+			<a href="">OPPO社区<s></s></a>
+			<span>拍客<u></u><s></s></span>
+		</div>
+		
+		<!-- 侧边栏开始 -->
+		{include file="../application/index/view/common/menu.html" /}
+		<!-- 侧边栏结束 -->
+
+
+		<div class="lSide">
+			<ul>
+				{volist name="postList" id="vo"}
+				<li class="shootBox box">
+					<a href="/index/topic/getPostDetail?id={$vo.id}" class="shootPic"><img src="{$vo.image}"></a>
+					<div class="shootBoxBot">
+						<a href="" class="userPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
+						<a href="" class="user">tang0pan</a>
+						<a href="" class="praise"><i></i><span>24</span></a>
+					</div>
+				</li>
+				{/volist}
+			</ul>
+		</div>
+		<h1 class="clear"></h1>
+	</section>
+
+
+	{include file="../application/index/view/common/footer.html" /}
+
+</body>
+</html>

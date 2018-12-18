@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>帖子详细页</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/css.css">
+</head>
+<body>
+	
+	{include file="../application/index/view/common/header.html" /}
+
+	
+	<section class="detailsMain">
+		<span class="dropdown">
+			<i></i>
+			<div class="dropmenu" id="dropmenu">
+				<a >举报</a>
+				<a >收藏</a>
+			</div>
+		</span>
+		<div class="detailsTop">
+			<a href="" class="headPic">
+				<img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg">
+			</a>
+			<div class="headDetail">
+				<h1><a href="">{$post.user_id}</a></h1>
+				<div>
+					<span class="date"><i></i>{$post.addTime|date="Y-m-d h:i",###}</span>
+					<span class="reading"><i></i>121108</span>
+					<span class="reply"><i></i>2999</span>
+				</div>
+			</div>
+		</div>
+		<div class="detailsContent">
+			{$post.content}
+		</div>
+		<ul class="detailsBtn">
+			<li class="replyBtn">
+				<i></i>
+				<span>评论<em>2999</em></span>
+			</li>
+			<li class="likeBtn">
+				<i></i>
+				<span>评论<em>2999</em></span>
+			</li>
+			<li class="sugarBtn">
+				<i></i>
+				<span>评论<em>2999</em></span>
+			</li>
+		</ul>
+	</section>
+	<section class="detailsMain">
+		<h1 class="replyHead">全部评论</h1>
+		<ul class="replyMain">
+			<li>
+				<a href="" class="replyUser"><img src="/static/images/15082587385096_avatar_middle.jpg"></a>
+				<div class="replyBox">
+					<h1>
+						<a href="" class="userName">有趣的1999 </a>
+						<span class="replyBy">来自 OPPO R11.反正都精彩</span>
+					</h1>
+					<p class="comment"> 要摆放拍很久吗 </p>
+					<div class="otherReply">
+						<span class="otherUser">西藏戍边人</span> : 要看拍什么内容，你好好看下帖子就知道了
+						<time>10-18 21:22</time>
+					</div>
+					<div class="otherOpr">
+						<a>更多</a>
+						<span class="reply"><i></i>0</span>
+						<span class="like"><i></i>0</span>
+						<span class="sugar"><i></i>0</span>
+						
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</section>
+
+	{include file="../application/index/view/common/footer.html" /}
+
+</body>
+</html>

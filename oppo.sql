@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2018 �?12 �?18 �?09:36
+-- 生成日期: 2018 �?12 �?19 �?09:39
 -- 服务器版本: 5.7.18-log
 -- PHP 版本: 5.6.27
 
@@ -75,6 +75,35 @@ INSERT INTO `oppo_carousel` (`id`, `title`, `link`, `number`, `url`, `addTime`) 
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `oppo_comment`
+--
+
+CREATE TABLE IF NOT EXISTS `oppo_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `user_id` int(11) NOT NULL COMMENT '评论用户id',
+  `post_id` int(11) NOT NULL COMMENT '评论帖子id',
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '评论内容',
+  `addTime` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='评论' AUTO_INCREMENT=9 ;
+
+--
+-- 转存表中的数据 `oppo_comment`
+--
+
+INSERT INTO `oppo_comment` (`id`, `user_id`, `post_id`, `content`, `addTime`) VALUES
+(1, 1, 18, '<img src="/static/images/emoji/3.gif" style="width:30px;"><img src="/static/images/emoji/5.gif" style="width:30px;"><img src="/uploads/20181219\\18d672df2ae5b5722bf22c5d31dd964a.jpg" style="width:120px">', '1545208407'),
+(2, 1, 18, '<img src="/static/images/emoji/3.gif" style="width:30px;"><img src="/static/images/emoji/5.gif" style="width:30px;"><img src="/uploads/20181219\\18d672df2ae5b5722bf22c5d31dd964a.jpg" style="width:120px">', '1545208415'),
+(3, 1, 18, '啊三大撒旦', '1545210321'),
+(4, 1, 18, '孔令辉的撒看来富家女', '1545210601'),
+(5, 1, 18, '电风扇地方', '1545210692'),
+(6, 1, 18, '斯蒂芬斯蒂芬', '1545210773'),
+(7, 1, 18, '计划符合加分vhj', '1545212228'),
+(8, 1, 18, '计划符合加分vhj地方大方', '1545212245');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `oppo_post`
 --
 
@@ -89,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `oppo_post` (
   `is_index` int(1) NOT NULL DEFAULT '0' COMMENT '是否推荐到首页（0-否，1-是）',
   `readnum` int(10) NOT NULL DEFAULT '0' COMMENT '查看次数',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='帖子' AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='帖子' AUTO_INCREMENT=19 ;
 
 --
 -- 转存表中的数据 `oppo_post`
@@ -98,7 +127,8 @@ CREATE TABLE IF NOT EXISTS `oppo_post` (
 INSERT INTO `oppo_post` (`id`, `user_id`, `topic_id`, `title`, `images`, `content`, `addTime`, `is_index`, `readnum`) VALUES
 (15, '12345678910', 3, '', '["\\/uploads\\/20181218\\\\d0282f5ebd971ba7d382740a68d91ff9.jpg"]', '<p>ahkjashdjkashdjk</p>', '1545118594', 1, 0),
 (16, '12345678910', 2, 'qsdsadss', '["\\/uploads\\/20181218\\\\97c9e7933a05eaf84c7cee8ffe44bcfa.jpg"]', '<p>awrwt5ytyrrf</p>', '1545118709', 1, 0),
-(17, '12345678910', 3, 'moriarty123', '["\\/uploads\\/20181218\\\\824bbd3f42b9cab165e0148007cb7b67.jpg","\\/uploads\\/20181218\\\\06f3817cd7cf6d54f34d45733821fb71.jpg"]', '<p>rtywe3fdfsdg</p>', '1545121170', 0, 0);
+(17, '12345678910', 3, 'moriarty123', '["\\/uploads\\/20181218\\\\824bbd3f42b9cab165e0148007cb7b67.jpg","\\/uploads\\/20181218\\\\06f3817cd7cf6d54f34d45733821fb71.jpg"]', '<p>rtywe3fdfsdg</p>', '1545121170', 0, 0),
+(18, '12345678910', 3, '东莞理工学院', '["\\/uploads\\/20181219\\\\772e78b09cb6c76b6bacb16ecdf62f3a.jpg"]', '<p>szdfsdf</p>', '1545180846', 0, 0);
 
 -- --------------------------------------------------------
 

@@ -60,7 +60,8 @@ class Login extends Controller
             }
 
             //登录成功
-            session('user_id', $phone);
+            session('user_id', $res['id']);
+            session('user_name', $phone);
             // session('user_name', $res['userName']);
             $this->success('登录成功！','index/index/index');
 

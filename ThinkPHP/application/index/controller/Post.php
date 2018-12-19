@@ -48,7 +48,7 @@ class Post extends Controller
     	$data = [
     		'user_id'	=>	session('user_id'),
     		'title'		=>	$title,
-            'topic_id'=>  $topic,
+            'topic_id'  =>  $topic,
     		'images'	=>	json_encode($images),
     		'content'	=>	$content,
     		'addTime'	=>	time(),

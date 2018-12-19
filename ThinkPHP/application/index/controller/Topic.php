@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Db;
 use think\Controller;
+use think\Request;
 
 class Topic extends Controller
 {
@@ -54,14 +55,17 @@ class Topic extends Controller
 
         
         //2.判断查看帖子次数，存入post_access表
+        $request = Request::instance();
         $data = [
             'post_id'   =>  $post['id'],
-            'ip'        =>  $request->ip();
-            'addTime'   =>  time();  
+            'ip'        =>  $request->ip(),
+            'addTime'   =>  time() 
         ];
         $ret = db('post_access')->insert($data);
 
         $count = db('post_access')->count('ip');
+        // dump($count);
+        $this->assign('readnum', $count);
 
         //3.判断点赞次数
         //

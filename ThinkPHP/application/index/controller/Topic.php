@@ -55,6 +55,7 @@ class Topic extends Controller
 
         
         //2.判断查看帖子次数，存入post_access表
+
         $request = Request::instance();
         $data = [
             'post_id'   =>  $post['id'],
@@ -66,6 +67,7 @@ class Topic extends Controller
         $count = db('post_access')->count('ip');
         // dump($count);
         $this->assign('readnum', $count);
+
 
         //3.判断点赞次数
         //

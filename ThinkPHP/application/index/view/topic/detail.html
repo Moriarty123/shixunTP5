@@ -36,7 +36,7 @@
 		</div>
 		<ul class="detailsBtn">
 			<li class="replyBtn">
-				<i></i>
+				<i onclick="showContentBox();"></i>
 				<span>评论<em>2999</em></span>
 			</li>
 			<li class="likeBtn">
@@ -73,11 +73,70 @@
 					</div>
 				</div>
 			</li>
-			
+			$reuqest->ip()
 		</ul>
 	</section>
 
 	{include file="../application/index/view/common/footer.html" /}
+
+
+	<!-- 评论弹窗 -->
+	<div id="content-form-box" style="display:none; position: fixed; top:0px; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 10;">
+		<div style="position: absolute; width: 600px; height: 400px; top:50%; left: 50%; transform: translate(-50%,-50%); background: #FFF;">
+			<!-- 标题 -->
+			<div style="padding: 10px;">
+				<span style="margin-left: 20px; font-size: 16px;">评论</span>
+				<a style="width: 20px;height: 20px;border: 1px solid; border-radius: 100%; float: right; text-align: center;line-height: 20px; font-size: 14px; margin-right: 5px; display: block;" onclick="closeContentBox();">X</a>
+			</div>
+			<!-- 评论框 -->
+			<div style="padding: 10px 20px; padding-right:30px; ">
+				<div style="width: 100%;height:240px; border: 1px solid #AAA;border-radius: 5px; padding: 5px; " contenteditable="true"></div>
+			</div>
+			<!-- emoji表情和图片 -->
+			<div style="padding: 20px;position: relative; top:0px; left: 0px;">
+				<span>
+					<!-- 添加表情 -->
+					<a style="width: 32px; height:28px; margin:10px; display: inline-block; background: url('/static/images/icon-sprite.png') -41px -362px;" onclick="showEmojiBox();"></a>
+					<!-- 表情选择 -->
+					<div id="emoji-box" style="display:none; margin-left:20px; width: 560px; height: 250px; border:1px solid; border-radius: 5px;border-color: #999; position: absolute;bottom: 0px; left:0px; background: #FFF">
+						<!-- 关闭按钮 -->
+						<div style="float: right; font-size: 16px; display: block;height: 24px; line-height: 24px; text-align: center;" onclick="hideEmojiBox();">X</div>
+						<!-- 表情框 -->
+						<div style="overflow: hidden; overflow-y: scroll; height: 250px; ">
+							{for start="1" end="132"}
+								<img src="/static/images/emoji/{$i}.gif" style="margin: 5px;">
+							{/for}
+						</div>
+					</div>
+					<a style="width: 32px; height:28px; margin:10px; display: inline-block; background: url('/static/images/icon-sprite.png') -41px -362px;"></a>
+					<div></div>
+				</span>
+			</div>
+		</div>
+	</div>
+	<!-- 评论弹窗结束 -->
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+function showContentBox()
+{
+	$('#content-form-box').fadeIn();
+}
+
+function closeContentBox()
+{
+	$('#content-form-box').fadeOut();
+}
+
+function showEmojiBox()
+{
+	$('#emoji-box').slideDown();
+}
+function hideEmojiBox()
+{
+	$('#emoji-box').slideUp();
+}
+</script>
 
 </body>
 </html>

@@ -26,7 +26,7 @@
 				<h1><a href="">{$post.user_id}</a></h1>
 				<div>
 					<span class="date"><i></i>{$post.addTime|date="Y-m-d h:i",###}</span>
-					<span class="reading"><i></i>121108</span>
+					<span class="reading"><i></i>{$readnum}</span>
 					<span class="reply"><i></i>2999</span>
 				</div>
 			</div>
@@ -147,17 +147,13 @@ function hideEmojiBox()
 {
 	$('#emoji-box').slideUp();
 }
-
 //上传图片并添加到评论框
 function uploadsimage(obj)
 {
 	// console.log(obj.value);
 	if ( obj.value == "" ) return;
-
 	var formdata = new FormData();
-
     formdata.append("image" , $(obj)[0].files[0]);//$(obj)[0].files[0]为文件对象
-
     $.ajax({
     	type : 'post',
     	url : '/index/common/uploadsimage',
@@ -180,7 +176,6 @@ function uploadsimage(obj)
         }
     });
 }
-
 // 选择表情图片
 function selectEmoji(obj)
 {
@@ -189,35 +184,27 @@ function selectEmoji(obj)
 	// console.log(html);
 	$('#content-box').append(html);
 }
-
 function submitComment()
 {
 	var content = $('#content-box').html();
 	var post_id = {$post.id};
 	// console.log(comment);
 	// console.log(post_id);
-
 	$.post('/index/comment/add', {'content':content, 'post_id':post_id},
 		function(ret) {
-
 		if(ret.code == 0){
 			if(ret.data) {
 				window.location.href = ret.url;
 			}
 		}
-
 		$('#content-form-box').fadeOut();
 		$('#tip-box').append(ret.msg);
 		$('#tip-box').fadeIn();
-
 		setTimeout(function() {
 			$('#tip-box').fadeOut();
 		},2000);
-
 	},'json');
 }
-
-
 </script>
 
 </body>

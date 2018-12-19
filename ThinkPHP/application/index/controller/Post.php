@@ -10,9 +10,9 @@ class Post extends Controller
 {
 	public function _initialize() 
 	{
-		if (session('user_id') == NULL) {
-			$this->error("请登录！", '/index/index/login');
-		}
+		// if (session('user_id') == NULL) {
+		// 	$this->error("请登录！", '/index/index/login');
+		// }
 	}
 
     public function index()

@@ -7,7 +7,7 @@
 					<a target="_self" href="{:Url('index/index/login')}">登录</a>
 				{else/}
 					<a target="_self" href="{:Url('index/login/logout')}">退出登录</a>
-					<a>{$Think.session.user_id}</a>
+					<a>{$Think.session.user_name}</a>
 				{/eq}
 
 				<a href="">找回密码</a>

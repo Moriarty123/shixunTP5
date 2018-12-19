@@ -90,7 +90,7 @@
 			</div>
 			<!-- 评论框 -->
 			<div style="padding: 10px 20px; padding-right:30px; ">
-				<div style="width: 100%;height:240px; border: 1px solid #AAA;border-radius: 5px; padding: 5px; " contenteditable="true"></div>
+				<div id="content-box" style="width: 100%;height:240px; border: 1px solid #AAA;border-radius: 5px; padding: 5px; overflow:hidden;overflow-y: scroll;" contenteditable="true"></div>
 			</div>
 			<!-- emoji表情和图片 -->
 			<div style="padding: 20px;position: relative; top:0px; left: 0px;">
@@ -100,42 +100,124 @@
 					<!-- 表情选择 -->
 					<div id="emoji-box" style="display:none; margin-left:20px; width: 560px; height: 250px; border:1px solid; border-radius: 5px;border-color: #999; position: absolute;bottom: 0px; left:0px; background: #FFF">
 						<!-- 关闭按钮 -->
-						<div style="float: right; font-size: 16px; display: block;height: 24px; line-height: 24px; text-align: center;" onclick="hideEmojiBox();">X</div>
+						<div style="float: right; font-size: 24px; display: block;height: 24px; line-height: 24px; text-align: center;" onclick="hideEmojiBox();">X</div>
 						<!-- 表情框 -->
 						<div style="overflow: hidden; overflow-y: scroll; height: 250px; ">
 							{for start="1" end="132"}
-								<img src="/static/images/emoji/{$i}.gif" style="margin: 5px;">
+								<img src="/static/images/emoji/{$i}.gif" style="margin: 5px;" onclick="selectEmoji(this);">
 							{/for}
 						</div>
 					</div>
-					<a style="width: 32px; height:28px; margin:10px; display: inline-block; background: url('/static/images/icon-sprite.png') -41px -362px;"></a>
-					<div></div>
+					<!-- 图片文件提交 -->
+					<a style="width: 32px; height:28px; margin:10px; display: inline-block; background: url('/static/images/icon-sprite.png') 0px -362px; position: relative; top:0px; left: 0px;">
+						<input type="file" name="uploads" style="width: 32px; height:28px; position: absolute; left: 0px; top:0px; opacity: 0;" onchange="uploadsimage(this);">
+					</a>
+
+					<button style="width: 100px; height: 30px; background: green; color:#FFF;float: right;" onclick="submitComment()">提交</button>
+
 				</span>
 			</div>
 		</div>
 	</div>
 	<!-- 评论弹窗结束 -->
 
+	<!-- 提示框 -->
+	<div id="tip-box" style="display:none; width: 200px; height: 100px; background: rgba(0,0,0,0.5); line-height: 100px; position: absolute; top:50%; left: 50%; transform: translate(-50%, -50%); color: #FFF; text-align: center; font-size: 16px;"></div>
+	<!-- 提示框结束 -->
+
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript">
+// 显示评论窗口
 function showContentBox()
 {
 	$('#content-form-box').fadeIn();
 }
-
+// 关闭评论窗口
 function closeContentBox()
 {
 	$('#content-form-box').fadeOut();
 }
-
+// 显示表情框
 function showEmojiBox()
 {
 	$('#emoji-box').slideDown();
 }
+// 隐藏表情框
 function hideEmojiBox()
 {
 	$('#emoji-box').slideUp();
 }
+
+//上传图片并添加到评论框
+function uploadsimage(obj)
+{
+	// console.log(obj.value);
+	if ( obj.value == "" ) return;
+
+	var formdata = new FormData();
+
+    formdata.append("image" , $(obj)[0].files[0]);//$(obj)[0].files[0]为文件对象
+
+    $.ajax({
+    	type : 'post',
+    	url : '/index/common/uploadsimage',
+    	data : formdata,
+    	cache : false,
+        processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType : false, // 不设置Content-type请求头
+        success : function(ret){
+        	var html = '<img src="'+ret+'" style="width:120px">';
+        	
+         	// console.log(html);
+         	$('#content-box').append(html);
+         	
+         // 	img_src.push(ret);
+        	// // console.log(img_src);
+        	// $('#pictureUploads').val(img_src);
+        },
+        error : function(){ 
+        	alert('图片上传失败');
+        }
+    });
+}
+
+// 选择表情图片
+function selectEmoji(obj)
+{
+	var src = $(obj).attr('src');
+	var html = "<img src='"+ src +"' style='width:30px;'>";
+	// console.log(html);
+	$('#content-box').append(html);
+}
+
+function submitComment()
+{
+	var content = $('#content-box').html();
+	var post_id = {$post.id};
+	// console.log(comment);
+	// console.log(post_id);
+
+	$.post('/index/comment/add', {'content':content, 'post_id':post_id},
+		function(ret) {
+
+		if(ret.code == 0){
+			if(ret.data) {
+				window.location.href = ret.url;
+			}
+		}
+
+		$('#content-form-box').fadeOut();
+		$('#tip-box').append(ret.msg);
+		$('#tip-box').fadeIn();
+
+		setTimeout(function() {
+			$('#tip-box').fadeOut();
+		},2000);
+
+	},'json');
+}
+
+
 </script>
 
 </body>

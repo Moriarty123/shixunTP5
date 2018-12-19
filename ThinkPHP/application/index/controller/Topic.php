@@ -54,14 +54,14 @@ class Topic extends Controller
 
         
         //2.判断查看帖子次数，存入post_access表
-        $data = [
-            'post_id'   =>  $post['id'],
-            'ip'        =>  $request->ip();
-            'addTime'   =>  time();  
-        ];
-        $ret = db('post_access')->insert($data);
+        // $data = [
+        //     'post_id'   =>  $post['id'],
+        //     'ip'        =>  $request->ip();
+        //     'addTime'   =>  time();  
+        // ];
+        // $ret = db('post_access')->insert($data);
 
-        $count = db('post_access')->count('ip');
+        // $count = db('post_access')->count('ip');
 
         //3.判断点赞次数
         //

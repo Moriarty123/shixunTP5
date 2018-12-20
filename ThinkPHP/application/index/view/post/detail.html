@@ -206,9 +206,7 @@ function submitComment()
 	{
 		submitReply(commentId);
 	}
-	else {
-
-
+	
 	//post方法提交
 	$.post('/index/comment/add', {'content':content, 'post_id':post_id},
 		function(ret) {
@@ -230,8 +228,6 @@ function submitComment()
 
 
 	},'json');
-
-	}
 }
 
 //回复评论
@@ -252,7 +248,7 @@ function submitReply(commentId)
 	var post_id = {$post.id};
 
 	//post方法提交
-	$.post('/index/topic/add', {'content':content, 'post_id':post_id, 'comment_id':commentId},
+	$.post('/index/reply/add', {'content':content, 'post_id':post_id, 'comment_id':commentId},
 		function(ret) {
 		if(ret.code == 0){
 			if(ret.data == 1) {

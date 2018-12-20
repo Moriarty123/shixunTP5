@@ -57,4 +57,19 @@ class Topic extends Common
 
 		return $this->fetch('topicList');
 	}
+
+	public function deleteTopic()
+	{
+		$id = input('get.id');
+		$where = "id = {$id}";
+
+		$ret = db('topic')->where($where)->delete();
+
+		if ($ret == false) {
+			$this->error('删除话题失败！');
+		}
+
+		$this->success('删除话题成功！');
+
+	}
 }

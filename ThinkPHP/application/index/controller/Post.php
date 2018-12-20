@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Db;
 use think\Controller;
+use think\Request;
 
 use app\index\controller\Topic;
 
@@ -102,9 +103,17 @@ class Post extends Controller
 
     public function getTopicPost($topic)
     {
+        // $user_id = session('user_id');
+        // dump($user_id);
         $where = "topic_id = {$topic}";
         // dump($where);
-        $ret = db('post')->where($where)->select();
+       
+        // $ret = db('post')->where($where)->select();
+        // dump($ret);
+        // $ret = db('post')->where($where)->alias("a")->join("topic b", "a.topic_id = b.id")->join("user c", "a.user_id = c.id")->select();
+        // $res = db('user')->where("id = 2")->select();
+        // dump($res);
+        $ret = db('post')->where($where)->alias("a")->join("user b", "a.user_id = b.id","LEFT")->field("a.*,b.phone")->select();
         // dump($ret);
         //只获取第一张图片
         $temp = [];
@@ -131,5 +140,52 @@ class Post extends Controller
         $post = db('post')->where($where)->find();
 
         return $post;
+    }
+
+
+    //打开帖子详细信息
+    public function getPostDetail()
+    {
+        //1.获取帖子信息
+        //
+        $id = input('get.id');
+        //查询该id的帖子
+        $Post = new Post();
+        $post = $Post->getOnePost($id);
+        
+        //2.判断查看帖子次数，存入post_access表
+        $request = Request::instance();
+        $data = [
+            'post_id'   =>  $post['id'],
+            'ip'        =>  $request->ip(),
+            'addTime'   =>  time() 
+        ];
+        $ret = db('post_access')->insert($data);
+        $count = db('post_access')->count('ip');
+        // dump($count);
+        $this->assign('readnum', $count);
+        //3.判断点赞次数
+        //
+        $this->assign('post', $post);
+
+        //4.评论列表
+        $comment = new Comment();
+        $where = "post_id = {$id}";
+        $ret = db('comment')->where($where)->alias("a")->join("user b", "a.user_id=b.id")->select();
+        dump($ret);
+        //5.显示所有回复
+        $commentList = [];
+        foreach ($ret as $key => $value) {
+            $where = "comment_id = {$value['id']}";
+            $reply = db('reply')->where($where)->alias("a")->join("user b", "a.user_id = b.id")->select();
+            $value['reply'] = $reply;
+            $commentList[] = $value;
+        }
+        
+        // dump($commentList);
+
+        $this->assign('commentList', $commentList);
+
+        return $this->fetch('detail');
     }
 }

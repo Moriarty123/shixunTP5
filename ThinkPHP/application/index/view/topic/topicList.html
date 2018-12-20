@@ -25,7 +25,7 @@
 			<ul>
 				{volist name="topicList" id="vo"}
 				<li class="topicBox box">
-					<a href="" class="follow">关注</a>
+					<button id="followButton" class="follow" onclick="topicFollow({$vo.id});">关注</button>
 					<a href="/index/topic/getPostList?topic={$vo.id}" class="topicPic"><img src="{$vo.image}"></a>
 					<h2><a href="" target="_self">{$vo.name}</a></h2>
 					<p>{$vo.content}</p>
@@ -52,6 +52,54 @@
 	</section>
 
 	{include file="../application/index/view/common/footer.html" /}
+
+	<!-- 提示框 -->
+	<div id="tip-box" style="display:none; width: 200px; height: 100px; background: rgba(0,0,0,0.5); line-height: 100px; position: fixed; top:50%; left: 50%; transform: translate(-50%, -50%); color: #FFF; text-align: center; font-size: 16px;"></div>
+	<!-- 提示框结束 -->
+
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+//关注话题
+function topicFollow(topicId)
+{
+	//post方法提交
+	$.post('/index/topic/topicFollow', {'topic_id':topicId},
+		function(ret) {
+		if(ret.code == 0){
+			if(ret.data == 1) {
+
+				window.location.href = ret.url;
+			}
+			if(ret.data == 3) {
+				$('#followButton').html('已关注');
+			}
+			if(ret.data == "") {
+				$('#followButton').html('取消关注');
+			}
+		}
+		if(ret.code == 1){
+			
+			if(ret.data == "") {
+				$('#followButton').html('取消关注');
+			}
+		}
+
+		//提示框显示信息
+		$('#followButton').html("已关注");
+		$('#tip-box').html("");
+		$('#tip-box').append(ret.msg);
+		$('#tip-box').fadeIn();
+		setTimeout(function() {
+			$('#tip-box').fadeOut();
+		},2000);
+
+
+	},'json');
+}
+
+</script>
+
 
 </body>
 </html>

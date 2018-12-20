@@ -24,10 +24,10 @@
 			<ul>
 				{volist name="postList" id="vo"}
 				<li class="shootBox box">
-					<a href="/index/topic/getPostDetail?id={$vo.id}" class="shootPic"><img src="{$vo.image}"></a>
+					<a href="/index/topic/getPostDetail?post_id={$vo.id}" class="shootPic"><img src="{$vo.image}"></a>
 					<div class="shootBoxBot">
 						<a href="" class="userPic"><img src="/static/images/932707a6jw1e8qgp5bmzyj2050050aa8.jpg"></a>
-						<a href="" class="user">tang0pan</a>
+						<a href="" class="user">{$vo.phone}</a>
 						<a href="" class="praise"><i></i><span>24</span></a>
 					</div>
 				</li>
